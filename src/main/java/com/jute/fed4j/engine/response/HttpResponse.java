@@ -21,13 +21,6 @@ import com.jute.fed4j.engine.Response;
 
 import java.util.Map;
 
-/**
- * Created by IntelliJ IDEA.
- * User: hzhu
- * Date: Nov 17, 2008
- * Time: 2:41:56 AM
- * To change this template use File | Settings | File Templates.
- */
 public class HttpResponse implements Response {
     public int code;
     public String body;

@@ -22,13 +22,6 @@ import com.jute.fed4j.engine.component.HttpComponent;
 import java.util.concurrent.*;
 import java.util.logging.Logger;
 
-/**
- * Created by IntelliJ IDEA.
- * User: hzhu
- * Date: Nov 14, 2008
- * Time: 4:51:56 PM
- * To change this template use File | Settings | File Templates.
- */
 public class Dispatcher implements Runnable, Callable {
     public static Logger logger = Logger.getLogger(Component.class.getName());
     

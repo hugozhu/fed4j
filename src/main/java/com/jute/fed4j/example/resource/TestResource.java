@@ -20,12 +20,11 @@ package com.jute.fed4j.example.resource;
 import com.jute.fed4j.engine.Workflow;
 import com.jute.fed4j.engine.Component;
 import com.jute.fed4j.engine.WorkflowEngine;
-import com.jute.fed4j.engine.response.*;
 import com.jute.fed4j.engine.component.HttpComponent;
 import com.jute.fed4j.engine.component.JoinComponent;
 
 import com.jute.fed4j.example.workflow.*;
-import com.jute.fed4j.example.config.*;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import javax.servlet.http.HttpServletRequest;
@@ -38,34 +37,20 @@ import java.lang.reflect.Field;
  * Time: 12:28:58 AM
  * To change this template use File | Settings | File Templates.
  */
-@Path("/engine")
+@Path("/")
 @Produces("text/html;charset=UTF-8")
 public class TestResource {
     @Context
     Request request;
-    static String VERSION="$Id: TestResource.java,v 1.10 2009/01/16 00:20:48 hzhu Exp $";
+    static String VERSION="$Id$";
 
     public TestResource() {
 
     }
 
     @GET
-    @Path("/test1")
-    /**
-     *
-     * <pre>
-     *              ---- YST -----
-     *            /                \
-     *  start ---    ----GOS        ----end
-     *            \                /    /
-     *              -- QSS --- YSM     /
-     *           \            /      /
-     *            \  ---QP /
-     *                     \      /
-     *                      IY --
-     * </pre>
-     */
-    public String test1(@Context UriInfo ui) {
+    @Path("/test")
+    public String test(@Context UriInfo ui) {
         String ip = "";
 
         //hack to get request ip
@@ -108,7 +93,6 @@ public class TestResource {
         workflow.setParameter("query", query);
         workflow.setParameter("client_ip", ip);
         workflow.setParameter("ui",ui);
-        workflow.setParameter("config",WebSearch.getConfigration().getInstance(new String[]{"","sk1","fed4j","us"}));
 
         if (ui.getQueryParameters().get("http_client")!=null) {
             workflow.setParameter("engine.http.client",ui.getQueryParameters().getFirst("http_client"));
@@ -117,22 +101,8 @@ public class TestResource {
         //start building static workflow, but F0Component can still add components dynamically
         workflow.init("start");
         workflow.addComponent("start", new F0Component("f0"));
-        workflow.addComponent("f0", new GossipComponent("Gossip"));
-        workflow.addComponent("f0", new YSTComponent("YST"));
-        workflow.addComponent("f0", new QSSComponent("QSS"));
-        workflow.addComponent("f0", new QPComponent("QP"));
-
-        workflow.addComponent("QP", new F1Component("f1")); //shortcuts fork
-
-        Component j1 = new JoinComponent("j1");
-        workflow.addComponent("f1",j1);
-        workflow.addComponent("QSS",j1);
-        workflow.addComponent("j1", new YSMComponent("YSM"));
-
         Component j9 = new J9Component("j9");
-        workflow.addComponent("Gossip",j9);
-        workflow.addComponent("YST", j9);
-        workflow.addComponent("YSM", j9);
+        workflow.addComponent("f0",j9);
         //finish static workflow building
 
         //dispatch
@@ -144,21 +114,11 @@ public class TestResource {
         /**
          * possible to add some business logic here while engine is running
          */
-        //System.err.println("----"+workflow.getComponent("f1").getResponse());
         
         engine.awaitForFinishing();      //block until workflow is finished   
 
         //get response
-        YSTResponse yst = (YSTResponse) workflow.getComponent("YST").getResponse();
-        YSMResponse ysm = (YSMResponse) workflow.getComponent("YSM").getResponse();
-        QSSResponse qss = (QSSResponse) workflow.getComponent("QSS").getResponse();
-        GossipResponse gossip = (GossipResponse) workflow.getComponent("Gossip").getResponse();
-
-        IYResponse iy = null;
-        if (workflow.isComponentOK("calculator")) {
-            iy = (IYResponse) workflow.getComponent("calculator").getResponse();
-        }
-
+ 
         //output
         StringBuilder result = new StringBuilder("<html><head>");
 
@@ -170,30 +130,17 @@ public class TestResource {
         buildHead(result);
         buildSearchBox(result,workflow);
 
-        result.append("\n" + qss + "\n");
-        if (iy != null)
-            result.append("\n" + iy + "\n");
        
         result.append("<div id=\"as\">");
-        result.append("\n" + gossip + "\n");
+//        result.append("\n" + gossip + "\n");
         result.append("</div>");
 
         result.append("<div id=\"res\">");
 
         result.append("<table><tr><td width=800 valign=top>");
 
-        if (workflow.isComponentOK("NewsDD")) {
-            NewsResponse news = (NewsResponse) workflow.getComponent("NewsDD").getResponse();
-            if (news!=null && news.results!=null && news.results.size()>0) {
-                result.append(news);
-            }
-        }
-        
-        result.append("\n" + ysm.toString("North") + "\n");
-        result.append("\n" + yst + "\n");
-        result.append("\n" + ysm.toString("South") + "\n");
         result.append("</td><td width=\"200\" valign=\"top\">");
-        result.append("\n" + ysm.toString("East") + "\n");
+//        result.append("\n" + ysm.toString("East") + "\n");
         result.append("</td></tr></table>");
 
         //debug
@@ -257,7 +204,7 @@ public class TestResource {
     }
 
     protected void buildHead(StringBuilder result) {
-        result.append("<h1>Java YFED Prototype</h1><div align=\"right\"><em>Version: "+VERSION+"</em></div>");
+        result.append("<h1>fed4j demo</h1><div align=\"right\"><em>Version: "+VERSION+"</em></div>");
     }
 
     protected void buildSearchBox(StringBuilder sb,Workflow workflow) {

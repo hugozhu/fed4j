@@ -19,13 +19,6 @@ package com.jute.fed4j.engine.response;
 
 import com.jute.fed4j.engine.Response;
 
-/**
- * Created by IntelliJ IDEA.
- * User: hzhu
- * Date: Nov 21, 2008
- * Time: 12:21:24 PM
- * To change this template use File | Settings | File Templates.
- */
 public class ErrorResponse implements Response {    
     public static int CANCLED = 1;
     public static int NULL = 0;
