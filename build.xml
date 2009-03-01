@@ -150,26 +150,11 @@
     </target>
 
     <target name="xjc" description="Generate AJXB stubs">
-        <xjc schema="schema/qp.xsd" package="com.jutesearch.engine.response.qp"
-             destdir="${module.fed4j.basedir}/src/main/java">
-            <produces dir="${module.fed4j.basedir}/src/main/java/com/jute/fed4j/engine/response/qp"
-                      includes="**/*.java"/>
-        </xjc>
-        <xjc schema="schema/iy.xsd" package="com.jutesearch.engine.response.iy"
-             destdir="${module.fed4j.basedir}/src/main/java">
-            <produces dir="${module.fed4j.basedir}/src/main/java/com/jute/fed4j/engine/response/iy"
-                      includes="**/*.java"/>
-        </xjc>
-        <xjc schema="schema/ysm/OvertureSearchResults.xsd" package="com.jutesearch.engine.response.ysm"
-             destdir="${module.fed4j.basedir}/src/main/java">
-            <produces dir="${module.fed4j.basedir}/src/main/java/com/jute/fed4j/engine/response/ysm"
-                      includes="**/*.java"/>
-        </xjc>
-        <xjc schema="schema/news.xsd" package="com.jutesearch.engine.response.news"
-             destdir="${module.fed4j.basedir}/src/main/java">
-            <produces dir="${module.fed4j.basedir}/src/main/java/com/jute/fed4j/engine/response/news"
-                      includes="**/*.java"/>
-        </xjc>
+        <!--<xjc schema="schema/qp.xsd" package="com.jutesearch.engine.response.qp"-->
+             <!--destdir="${module.fed4j.basedir}/src/main/java">-->
+            <!--<produces dir="${module.fed4j.basedir}/src/main/java/com/jute/fed4j/engine/response/qp"-->
+                      <!--includes="**/*.java"/>-->
+        <!--</xjc>-->
     </target>
 
     <target name="war" depends="all" description="Package web application">
