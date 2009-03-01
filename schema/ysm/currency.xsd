@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            elementFormDefault="qualified">
+  <xsd:simpleType name="CurrencyType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="USD"/>
+      <xsd:enumeration value="GBP"/>
+      <xsd:enumeration value="EUR"/>
+      <xsd:enumeration value="JPY"/>
+      <xsd:enumeration value="KRW"/>
+      <xsd:enumeration value="AUD"/>
+      <xsd:enumeration value="BRL"/>
+      <xsd:enumeration value="HKD"/>
+      <xsd:enumeration value="TWD"/>
+      <xsd:enumeration value="CNY"/>
+      <xsd:enumeration value="CAD"/>
+      <xsd:enumeration value="INR"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            elementFormDefault="qualified">
+  <xsd:simpleType name="MarketType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="us"/>
+      <xsd:enumeration value="uk"/>
+      <xsd:enumeration value="de"/>
+      <xsd:enumeration value="fr"/>
+      <xsd:enumeration value="jp"/>
+      <xsd:enumeration value="kr"/>
+      <xsd:enumeration value="it"/>
+      <xsd:enumeration value="es"/>
+      <xsd:enumeration value="ch"/>
+      <xsd:enumeration value="at"/>
+      <xsd:enumeration value="nl"/>
+      <xsd:enumeration value="no"/>
+      <xsd:enumeration value="dk"/>
+      <xsd:enumeration value="se"/>
+      <xsd:enumeration value="fi"/>
+      <xsd:enumeration value="au"/>
+      <xsd:enumeration value="br"/>
+      <xsd:enumeration value="hk"/>
+      <xsd:enumeration value="tw"/>
+      <xsd:enumeration value="cn"/>
+      <xsd:enumeration value="ca"/>
+      <xsd:enumeration value="mx"/>
+      <xsd:enumeration value="sg"/>
+      <xsd:enumeration value="in"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="fed4j" default="all">
+
+
+    <property file="fed4j.properties"/>
+    <!-- Uncomment the following property if no tests compilation is needed -->
+    <!--
+   <property name="skip.tests" value="true"/>
+    -->
+
+    <!-- Compiler options -->
+
+    <property name="compiler.debug" value="on"/>
+    <property name="compiler.generate.no.warnings" value="off"/>
+    <property name="compiler.args" value=""/>
+    <property name="compiler.max.memory" value="128m"/>
+    <patternset id="ignored.files">
+        <exclude name="**/CVS/**"/>
+        <exclude name="**/SCCS/**"/>
+        <exclude name="**/RCS/**"/>
+        <exclude name="**/rcs/**"/>
+        <exclude name="**/.DS_Store/**"/>
+        <exclude name="**/.svn/**"/>
+        <exclude name="**/.sbas/**"/>
+        <exclude name="**/.IJI.*/**"/>
+        <exclude name="**/vssver.scc/**"/>
+        <exclude name="**/vssver2.scc/**"/>
+        <exclude name="**/*.pyc/**"/>
+        <exclude name="**/*.pyo/**"/>
+        <exclude name="**/.git/**"/>
+    </patternset>
+    <patternset id="compiler.resources">
+        <include name="**/?*.properties"/>
+        <include name="**/?*.xml"/>
+        <include name="**/?*.gif"/>
+        <include name="**/?*.png"/>
+        <include name="**/?*.jpeg"/>
+        <include name="**/?*.jpg"/>
+        <include name="**/?*.html"/>
+        <include name="**/?*.dtd"/>
+        <include name="**/?*.tld"/>
+    </patternset>
+
+
+    <!-- Project Libraries -->
+    <path id="library.build.classpath">
+        <fileset dir="${basedir}" includes="build/*.jar"/>
+    </path>
+
+    <path id="library.lib.classpath">
+        <fileset dir="${basedir}" includes="lib/*.jar"/>
+    </path>
+
+    <taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask">
+        <classpath refid="library.build.classpath"/>
+    </taskdef>
+
+    <taskdef resource="aQute/bnd/ant/taskdef.properties">
+        <classpath refid="library.build.classpath"/>
+    </taskdef>
+
+    <!-- Modules -->
+
+    <!-- Module engine -->
+
+    <dirname property="module.fed4j.basedir" file="${ant.file}"/>
+
+
+    <property name="compiler.args.fed4j" value="${compiler.args}"/>
+
+    <property name="fed4j.output.dir" value="${module.fed4j.basedir}/classes"/>
+    <property name="fed4j.testoutput.dir" value="${module.fed4j.basedir}/classes"/>
+
+    <path id="fed4j.module.bootclasspath">
+        <!-- Paths to be included in compilation bootclasspath -->
+    </path>
+
+    <path id="fed4j.module.classpath">
+        <path refid="library.lib.classpath"/>
+        <path refid="library.build.classpath"/>
+    </path>
+
+    <path id="fed4j.runtime.module.classpath">
+        <pathelement location="${fed4j.output.dir}"/>
+        <path refid="library.lib.classpath"/>
+    </path>
+
+
+    <patternset id="excluded.from.module.fed4j">
+        <patternset refid="ignored.files"/>
+    </patternset>
+
+    <patternset id="excluded.from.compilation.fed4j">
+        <patternset refid="excluded.from.module.fed4j"/>
+    </patternset>
+
+    <path id="fed4j.module.sourcepath">
+        <dirset dir="${module.fed4j.basedir}">
+            <include name="src/main/java"/>
+        </dirset>
+    </path>
+
+
+    <target name="compile.module.fed4j" depends="compile.module.fed4j.production,compile.module.fed4j.tests"
+            description="Compile module fed4j"/>
+
+
+    <target name="compile.module.fed4j.production" description="Compile module fed4j; production classes" depends="xjc">
+        <mkdir dir="${fed4j.output.dir}"/>
+        <javac destdir="${fed4j.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}"
+               memorymaximumsize="${compiler.max.memory}" fork="true">
+            <compilerarg line="${compiler.args.fed4j}"/>
+            <bootclasspath refid="fed4j.module.bootclasspath"/>
+            <classpath refid="fed4j.module.classpath"/>
+            <src refid="fed4j.module.sourcepath"/>
+            <patternset refid="excluded.from.compilation.fed4j"/>
+        </javac>
+
+        <copy todir="${fed4j.output.dir}">
+            <fileset dir="${module.fed4j.basedir}/src/main/java">
+                <patternset refid="compiler.resources"/>
+                <type type="file"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="compile.module.fed4j.tests" depends="compile.module.fed4j.production"
+            description="compile module fed4j; test classes" unless="skip.tests"/>
+
+    <target name="clean.module.fed4j" description="cleanup module">
+        <delete dir="${fed4j.output.dir}"/>
+        <delete dir="${fed4j.testoutput.dir}"/>
+    </target>
+
+    <target name="init" description="Build initialization">
+        <!-- Perform any build initialization in this target -->
+    </target>
+
+    <target name="clean" depends="clean.module.fed4j" description="cleanup all"/>
+
+    <target name="all" depends="init, clean, compile.module.fed4j" description="build all"/>
+
+    <target name="run" depends="all" description="Run the example">
+        <java fork="true" classname="com.jute.fed4j.example.Main">
+            <classpath>
+                <pathelement location="${fed4j.output.dir}"/>
+                <path refid="library.lib.classpath"/>
+            </classpath>
+        </java>
+    </target>
+
+    <target name="xjc" description="Generate AJXB stubs">
+        <xjc schema="schema/qp.xsd" package="com.jutesearch.engine.response.qp"
+             destdir="${module.fed4j.basedir}/src/main/java">
+            <produces dir="${module.fed4j.basedir}/src/main/java/com/jute/fed4j/engine/response/qp"
+                      includes="**/*.java"/>
+        </xjc>
+        <xjc schema="schema/iy.xsd" package="com.jutesearch.engine.response.iy"
+             destdir="${module.fed4j.basedir}/src/main/java">
+            <produces dir="${module.fed4j.basedir}/src/main/java/com/jute/fed4j/engine/response/iy"
+                      includes="**/*.java"/>
+        </xjc>
+        <xjc schema="schema/ysm/OvertureSearchResults.xsd" package="com.jutesearch.engine.response.ysm"
+             destdir="${module.fed4j.basedir}/src/main/java">
+            <produces dir="${module.fed4j.basedir}/src/main/java/com/jute/fed4j/engine/response/ysm"
+                      includes="**/*.java"/>
+        </xjc>
+        <xjc schema="schema/news.xsd" package="com.jutesearch.engine.response.news"
+             destdir="${module.fed4j.basedir}/src/main/java">
+            <produces dir="${module.fed4j.basedir}/src/main/java/com/jute/fed4j/engine/response/news"
+                      includes="**/*.java"/>
+        </xjc>
+    </target>
+
+    <target name="war" depends="all" description="Package web application">
+        <war destfile="fed4j.war" webxml="web/WEB-INF/web.xml">
+          <fileset dir="web"/>
+          <lib dir="lib"/>
+          <classes dir="classes"/>
+        </war>
+    </target>
+
+</project>

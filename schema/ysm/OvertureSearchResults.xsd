@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="qualified">
+  <xsd:include schemaLocation="market.xsd"/>
+  <xsd:include schemaLocation="currency.xsd"/>
+
+  <xsd:element name="Results" type="ResultsType"/>
+
+  <xsd:complexType name="ResultsType">
+    <xsd:sequence>
+      <xsd:element
+        name="KeywordsRatingSet"
+        type="KeywordsRatingSetType"
+        minOccurs='0'
+        maxOccurs='1'/>
+      <xsd:element
+        name="PageRegionSet"
+        type="PageRegionSetType"
+        minOccurs='0'
+        maxOccurs='unbounded'/>
+      <xsd:element
+        name="Local"
+        type="LocalType"
+        minOccurs='0'
+        maxOccurs='1'/>
+      <xsd:element
+        name="ResultSet"
+        type="ResultSetType"
+        minOccurs='0'
+        maxOccurs='unbounded'/>
+      <xsd:element
+        name="NextArgs"
+        type="NextArgsType"  minOccurs='0' maxOccurs='1'/>
+      <xsd:element
+        name="PrevArgs"
+        type="NextArgsType"  minOccurs='0' maxOccurs='1'/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="KeywordsRatingSetType">
+    <xsd:sequence>
+      <xsd:element
+        name="Sensitive"
+        type="SensitiveType" minOccurs='0' maxOccurs='1'/>
+      <xsd:element
+        name="Market"
+        type="MarketType" minOccurs='0' maxOccurs='1'/>
+      <xsd:element
+        name="Commercial"
+        type="xsd:boolean" minOccurs='0' maxOccurs='1'/>
+      <xsd:sequence>
+        <xsd:element name="Label" minOccurs='0' maxOccurs='unbounded'>
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="xsd:string">
+                <xsd:attribute name="type" type="xsd:string"/>
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:sequence>
+    <xsd:attribute name="keywords" type="xsd:string" use="required"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="PageRegionSetType">
+    <xsd:sequence>
+      <xsd:element name="PageRegion" minOccurs='0' maxOccurs='unbounded'>
+        <xsd:complexType>
+          <xsd:attribute name="name"       type="NonEmptyString" use="required"/>
+          <xsd:attribute name="numResults" type="xsd:integer"    use="required"/>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="LocalType">
+    <xsd:sequence>
+      <xsd:element name="ImplicitLocal" minOccurs='0' maxOccurs='1'>
+        <xsd:complexType>
+          <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+              <xsd:attribute name="type" type="xsd:string"/>
+            </xsd:extension>
+          </xsd:simpleContent>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="MapURL" minOccurs='0' maxOccurs='1'>
+        <xsd:complexType>
+          <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+              <xsd:attribute name="type" type="xsd:string"/>
+            </xsd:extension>
+          </xsd:simpleContent>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Reason" minOccurs='0' maxOccurs='1'>
+        <xsd:complexType>
+          <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+              <xsd:attribute name="type" type="xsd:string"/>
+            </xsd:extension>
+          </xsd:simpleContent>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:simpleType name="SensitiveType">
+    <xsd:restriction base="xsd:integer">
+      <xsd:enumeration value="1"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="AdultRatingType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="G"/>
+      <xsd:enumeration value="X"/>
+      <xsd:enumeration value="U"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:complexType name="ResultSetType">
+    <xsd:sequence>
+      <xsd:element
+        name="MetaData"
+        type="MetaDataType"  minOccurs='0' maxOccurs='1'/>
+      <xsd:element
+        name="Listing"
+        type="ListingType"   minOccurs='0' maxOccurs='unbounded'/>
+      <xsd:element
+        name="NextArgs"
+        type="NextArgsType"  minOccurs='0' maxOccurs='1'/>
+      <xsd:element
+        name="PrevArgs"
+        type="NextArgsType"  minOccurs='0' maxOccurs='1'/>
+    </xsd:sequence>
+    <xsd:attribute name="id"         type="NonEmptyString" use="optional"/>
+    <xsd:attribute name="numResults" type="xsd:integer"    use="optional"/>
+    <xsd:attribute name="trackUrl"   type="TrackUrlType"   use="optional"/>
+    <xsd:attribute name="comm"       type="xsd:boolean"    use="optional"/>
+    <xsd:attribute name="adultRating" type="AdultRatingType" use="optional"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="MetaDataType">
+    <xsd:sequence>
+      <xsd:element name="TotalHits" minOccurs='0' maxOccurs='1' type="xsd:integer"/>
+      <xsd:element name="DeepHits" minOccurs='0' maxOccurs='1' type="xsd:integer"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ListingType">
+    <xsd:sequence>
+      <xsd:element name="ClickUrl" minOccurs='1' maxOccurs='unbounded'>
+        <xsd:complexType>
+          <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+              <xsd:attribute name="type" type="xsd:string"/>
+            </xsd:extension>
+          </xsd:simpleContent>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="rank"             type="xsd:integer"    use="required"/>
+    <xsd:attribute name="title"            type="NonEmptyString" use="required"/>
+    <xsd:attribute name="description"      type="NonEmptyString" use="required"/>
+    <xsd:attribute name="siteHost"         type="NonEmptyString" use="required"/>
+    <xsd:attribute name="promoPhone"       type="NonEmptyString" use="optional"/>
+    <xsd:attribute name="bid"              type="BidType"        use="optional"/>
+    <xsd:attribute name="bidText"          type="NonEmptyString" use="optional"/>
+    <xsd:attribute name="currency"         type="CurrencyType"   use="optional"/>
+    <xsd:attribute name="biddedListing"    type="xsd:boolean"    use="optional"/>
+    <xsd:attribute name="lat"              type="NonEmptyString" use="optional"/>
+    <xsd:attribute name="lon"              type="NonEmptyString" use="optional"/>
+    <xsd:attribute name="partnerAccountID" type="NonEmptyString" use="optional"/>
+    <xsd:attribute name="adultRating"      type="AdultRatingType" use="optional"/>
+    <xsd:attribute name="lastModified"     type="xsd:dateTime"   use="optional"/>
+    <xsd:attribute name="businessCountry"  type="xsd:string" use="optional"/>
+    <xsd:attribute name="siteLang"         type="xsd:string" use="optional"/>
+    <xsd:attribute name="listingLang"      type="xsd:string" use="optional"/>
+    <xsd:attribute name="resultType"       type="NonEmptyString" use="optional"/>
+    <xsd:attribute name="rawscore"         type="xsd:string"      use="optional"/>
+    <xsd:attribute name="tightmatchresulttype" type="xsd:string"  use="optional"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="DirectoryType">
+    <xsd:attribute name="title"   type="NonEmptyString" use="required"/>
+    <xsd:attribute name="did"     type="xsd:integer"    use="required"/>
+    <xsd:attribute name="level"   type="xsd:integer"    use="required"/>
+    <xsd:attribute name="uriArgs" type="NonEmptyString" use="required"/>
+  </xsd:complexType>
+
+  <xsd:simpleType name="TrackUrlType">
+    <xsd:restriction base="xsd:token">
+      <xsd:pattern value="http:\/\/a840.g.akamai.net\/.*"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="BidType">
+    <xsd:restriction base="xsd:token">
+      <xsd:pattern value="\p{Nd}+([\.,]\p{Nd}{2})?"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="NonEmptyString">
+    <xsd:restriction base="xsd:string">
+      <xsd:minLength value='1'/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="NextArgsType">
+    <xsd:restriction base="xsd:token">
+      <xsd:pattern value="Keywords=.*&amp;xargs=.*"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

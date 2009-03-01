@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RESULTSET RESULTTYPE="plain" FIRSTRESULT="1" NUMRESULTS="6" TOTALRESULTS="4615" SEARCHTIME="0.0060">
+<NAVIGATION>
+<LINK REL="next" FIRSTRESULT="7" LASTRESULT="12" HREF="/xml?custid=yahoo%2Fus%2Fsc%2Fslotted&amp;limlanguage=en&amp;age=7d&amp;search=shortcuts&amp;dups=hide&amp;query=obama+&amp;hits=6&amp;ocr=no&amp;ranking=usrank&amp;collapse=on&amp;defidx=title&amp;offset=6">
+<UPDATE PARAM="offset" VALUE="6"/>
+</LINK>
+</NAVIGATION>
+<RESULT NUM="1">
+<DOCUMENTID>93fee69812de30ddd82f8f16</DOCUMENTID>
+<TITLE>Obama aide spoke to Ill. gov's office on Senate seat</TITLE>
+<ABSTRACT> President-elect Barack Obama's choice for White House chief of staff spoke to Illinois Gov. Rod Blagojevich's office about who the governor should appoint to replace Obama in the U.S. Senate, the Chicago Tribune reported on Saturday.</ABSTRACT>
+<URL>http://news.yahoo.com/s/nm/20081213/pl_nm/us_blagojevich_14</URL>
+<ATTRIBUTES>accessfree typearticle typenews</ATTRIBUTES>
+<SOURCENAME>Reuters via Yahoo! News</SOURCENAME>
+<SOURCEURL>http://news.yahoo.com/</SOURCEURL>
+<PUBDATE>1229209982</PUBDATE>
+<LANGUAGE>en english</LANGUAGE>
+<MULTIMEDIA>
+<THUMBNAIL WIDTH="82" HEIGHT="55">http://d.yimg.com/us.yimg.com/p/nm/20081214/vsthumb.2008_12_13t181239_450x304_us_blagojevich.jpg</THUMBNAIL>
+<THUMBNAIL WIDTH="82" HEIGHT="55">http://d.yimg.com/us.yimg.com/p/nm/20081214/vsthumb.2008_12_13t181239_450x304_us_blagojevich.jpg</THUMBNAIL>
+</MULTIMEDIA>
+</RESULT>
+<RESULT NUM="2">
+<DOCUMENTID>7131f1b551ef8dd8f58ed182</DOCUMENTID>
+<TITLE>Obama pick pioneered innovative affordable housing</TITLE>
+<ABSTRACT>President-elect Barack Obama has named New York City housing official Shaun Donovan as his secretary of Housing and Urban Development, turning to a former Clinton administration official to help fight the impact of foreclosures in distressed cities.</ABSTRACT>
+<URL>http://www.usatoday.com/news/politics/2008-12-13-obama-cabinet_N.htm?csp=34</URL>
+<ATTRIBUTES>accessfree typearticle typenews</ATTRIBUTES>
+<SOURCENAME>USA Today</SOURCENAME>
+<SOURCEURL>http://www.usatoday.com/</SOURCEURL>
+<PUBDATE>1229209460</PUBDATE>
+<LANGUAGE>en english</LANGUAGE>
+</RESULT>
+<RESULT NUM="3">
+<DOCUMENTID>7131f1b551ef8dd8aef10fec</DOCUMENTID>
+<TITLE>Obama pick pioneered innovative affordable homes</TITLE>
+<ABSTRACT>Shaun Donovan, the New York City official Barack Obama chose to lead the Department of Housing and Urban Development, has hands-on experience with an issue important to the president-elect: affordable housing.</ABSTRACT>
+<URL>http://www.usatoday.com/news/politics/2008-12-13-donovan_N.htm?csp=34</URL>
+<ATTRIBUTES>accessfree typearticle typenews</ATTRIBUTES>
+<SOURCENAME>USA Today</SOURCENAME>
+<SOURCEURL>http://www.usatoday.com/</SOURCEURL>
+<PUBDATE>1229209330</PUBDATE>
+<LANGUAGE>en english</LANGUAGE>
+</RESULT>
+<RESULT NUM="4">
+<DOCUMENTID>93fee69812de30dd1f56731a</DOCUMENTID>
+<TITLE>Obama faces heady challenges, and they're growing</TITLE>
+<ABSTRACT> President-elect Barack Obama, relatively young and inexperienced, is facing a rapidly growing list of monumental challenges as he prepares to take the reins of a nation in turmoil.</ABSTRACT>
+<URL>http://news.yahoo.com/s/ap/20081213/ap_on_el_pr/obama_mounting_challenges_4</URL>
+<ATTRIBUTES>accessfree typearticle typenews</ATTRIBUTES>
+<SOURCENAME>AP via Yahoo! News</SOURCENAME>
+<SOURCEURL>http://news.yahoo.com/</SOURCEURL>
+<PUBDATE>1229208525</PUBDATE>
+<LANGUAGE>en english</LANGUAGE>
+<MULTIMEDIA>
+<THUMBNAIL WIDTH="53" HEIGHT="81">http://d.yimg.com/us.yimg.com/p/ap/20081213/vsthumb.68ccd62a120149bbaed02f4c835f5843.obama_mounting_challenges_wx105.jpg</THUMBNAIL>
+</MULTIMEDIA>
+</RESULT>
+<RESULT NUM="5">
+<DOCUMENTID>ca1e6357399774955d710a21</DOCUMENTID>
+<TITLE>Obama Aide Discussed Senate Vacancy With Governor</TITLE>
+<ABSTRACT>Barack Obama?s chief of staff, Rahm Emanuel, spoke several times with Gov. Rod R. Blagojevich about possible candidates for Mr. Obama?s Senate seat, aides said.</ABSTRACT>
+<URL>http://www.nytimes.com/2008/12/14/us/politics/14emanuel.html</URL>
+<ATTRIBUTES>accesssignin typearticle typenews</ATTRIBUTES>
+<SOURCENAME>New York Times</SOURCENAME>
+<SOURCEURL>http://www.nytimes.com/</SOURCEURL>
+<PUBDATE>1229207679</PUBDATE>
+<LANGUAGE>en english</LANGUAGE>
+</RESULT>
+<RESULT NUM="6">
+<DOCUMENTID>93fee69812de30dd43447089</DOCUMENTID>
+<TITLE>Obama: HUD pick central part of economic blueprint</TITLE>
+<ABSTRACT> In naming his choice for housing secretary, President-elect Barack Obama on Saturday rounded out his economic team and gave new prominence to the mortgage crisis that has dragged the country into a recession.</ABSTRACT>
+<URL>http://news.yahoo.com/s/ap/20081213/ap_on_go_pr_wh/obama_hud_18</URL>
+<ATTRIBUTES>accessfree typearticle typenews</ATTRIBUTES>
+<SOURCENAME>AP via Yahoo! News</SOURCENAME>
+<SOURCEURL>http://news.yahoo.com/</SOURCEURL>
+<PUBDATE>1229207346</PUBDATE>
+<LANGUAGE>en english</LANGUAGE>
+<MULTIMEDIA>
+<THUMBNAIL WIDTH="54" HEIGHT="81">http://d.yimg.com/us.yimg.com/p/ap/20081213/vsthumb.415d011422ca46a589d203e248a4097e.obama_hud_ny111.jpg</THUMBNAIL>
+</MULTIMEDIA>
+</RESULT>
+<NEWSDD id="sb05" update="20081211235301">
+  <DISPLAY show="true" mpos="0" modpos="0" priority="alone"/>
+  <MODELINFO source="whitelist" score="-2.65444" rewrite="false"/>
+  <ULT>
+    <DDID>sb05</DDID>
+    <DDINFO>upd=20081211235301;show=true;modpos=0;src=whitelist;score=-2.65444;</DDINFO>
+  </ULT>
+</NEWSDD>
+</RESULTSET>

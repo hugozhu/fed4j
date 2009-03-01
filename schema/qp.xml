@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<QueryPlan>
+    <Units>
+        <unit>
+            <frequency>1002828.000000</frequency>
+            <name>2</name>
+            <querytounit>0.0043</querytounit>
+        </unit>
+        <unit>
+            <frequency>765627.000000</frequency>
+            <name>3</name>
+            <querytounit>0.0119</querytounit>
+        </unit>
+    </Units>
+    <Query>
+        <QPCat>
+        </QPCat>
+    </Query>
+    <LocationInfo>
+        <Query>
+        </Query>
+        <Current>
+            <city>Santa Clara</city>
+            <conf>100.00</conf>
+            <country>US</country>
+            <countrycode>US</countrycode>
+            <countryname>United States</countryname>
+            <lat>37.396309</lat>
+            <lon>-121.961411</lon>
+            <lq>2*3</lq>
+            <name>95054</name>
+            <ptype>Zip</ptype>
+            <source>ulm</source>
+            <statecode>CA</statecode>
+            <woeid>12797538</woeid>
+            <zip>95054</zip>
+        </Current>
+    </LocationInfo>
+    <DispatchPlan>
+        <geoysm conf="1.0000" log="" cat="geoysm" catid="" type="explicit">
+            <hloc>Santa Clara CA</hloc>
+        </geoysm>
+        <iy conf="1.0000" log="" cat="calculator" catid="" type="explicit">
+            <p>2 3</p>
+            <q>2*3</q>
+            <sck>2*3</sck>
+            <sct>calculator</sct>
+        </iy>
+        <news_dd conf="1.0000" log="" cat="news" catid="" type="explicit">
+            <idxdays>7</idxdays>
+            <p>2*3</p>
+            <q>2*3</q>
+        </news_dd>
+        <ebay conf="1.0000" log="" cat="ebay" catid="" type="explicit">
+            <q>2 3</q>
+        </ebay>
+    </DispatchPlan>
+    <DisplayPlan>
+        <DirectDisplay>
+            <template_type>geoysm</template_type>
+            <display type="normal" name="geoysm">
+                <sc name="geoysm">
+                    <statslabel ctr="" impr=""/>
+                </sc>
+            </display>
+        </DirectDisplay>
+        <DirectDisplay>
+            <template_type>calculator</template_type>
+            <display type="normal" name="calculator">
+                <sc name="calculator">
+                    <statslabel ctr="" impr=""/>
+                </sc>
+            </display>
+        </DirectDisplay>
+        <DirectDisplay>
+            <template_type>news_dd</template_type>
+            <display type="normal" name="news_dd">
+                <sc name="news_dd">
+                    <statslabel ctr="9.0000" impr="3522209">shortcut_news_dd</statslabel>
+                </sc>
+            </display>
+            <count min="1"/>
+        </DirectDisplay>
+        <DirectDisplay>
+            <template_type>ebay</template_type>
+            <display type="normal" name="ebay">
+                <sc name="ebay">
+                    <statslabel ctr="" impr=""/>
+                </sc>
+            </display>
+        </DirectDisplay>
+    </DisplayPlan>
+    <AdjunctContainer/>
+</QueryPlan>
+        <!-- qp6.fed4j.sk1.yahoo.com uncompressed/chunked Tue Nov 25 20:30:07 PST 2008 -->
