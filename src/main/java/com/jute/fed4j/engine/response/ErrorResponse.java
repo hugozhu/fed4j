@@ -19,6 +19,8 @@ package com.jute.fed4j.engine.response;
 
 import com.jute.fed4j.engine.Response;
 
+import java.io.InputStream;
+
 public class ErrorResponse implements Response {    
     public static int CANCLED = 1;
     public static int NULL = 0;
@@ -30,7 +32,7 @@ public class ErrorResponse implements Response {
         this.code = code;
     }
 
-    public void unmarshal() throws Exception {
+    public void unmarshal(InputStream in) throws Exception {
         //do nothing
     }
 

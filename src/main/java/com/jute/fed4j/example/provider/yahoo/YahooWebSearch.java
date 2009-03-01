@@ -26,10 +26,18 @@ import java.util.HashMap;
  * API: http://developer.yahoo.com/search/web/V1/webSearch.html
  * eg: http://search.yahooapis.com/WebSearchService/V1/webSearch?appid=5ShQ8P3V34GqsC9ekWuQSSRSrS3pghYGLA9PWF.T_.8Mb.Prvh5ZWLFbn3aeGVqL5Q--&query=madonna&results=2
  */
-public class WebSearch extends HttpProvider {
+public class YahooWebSearch extends HttpProvider {
     String appid = "5ShQ8P3V34GqsC9ekWuQSSRSrS3pghYGLA9PWF.T_.8Mb.Prvh5ZWLFbn3aeGVqL5Q--";
 
-    public WebSearch() {
+    public String getAppid() {
+        return appid;
+    }
+
+    public void setAppid(String appid) {
+        this.appid = appid;
+    }
+
+    public YahooWebSearch() {
         host = "search.yahooapis.com";
         port = 80;
         path = "/WebSearchService/V1/webSearch";
@@ -41,5 +49,5 @@ public class WebSearch extends HttpProvider {
         map.put("appid",appid);
         map.put("results",String.valueOf(hits));
         return map;
-    }
+    }        
 }

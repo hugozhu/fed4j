@@ -17,6 +17,8 @@
 
 package com.jute.fed4j.engine;
 
+import java.io.InputStream;
+
 /**
  * Created by IntelliJ IDEA.
  * User: hzhu
@@ -26,5 +28,5 @@ package com.jute.fed4j.engine;
  */
 public interface Response {
     public int getCode();
-    public void unmarshal() throws Exception;
+    public void unmarshal(InputStream in) throws Exception;
 }

@@ -62,7 +62,7 @@ public abstract class HttpDispatcher {
         if (body!=null) {
             Response response = component.createResponse(code,body);
             component.preUnmarshalTimestamp = System.currentTimeMillis();
-            response.unmarshal();
+            response.unmarshal(null);
             component.postUnmarshalTimestamp = System.currentTimeMillis();
             component.setResponse(response);
         }

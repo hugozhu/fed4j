@@ -20,6 +20,7 @@ package com.jute.fed4j.engine.response;
 import com.jute.fed4j.engine.Response;
 
 import java.util.Map;
+import java.io.InputStream;
 
 public class HttpResponse implements Response {
     public int code;
@@ -36,7 +37,7 @@ public class HttpResponse implements Response {
         return body;
     }
 
-    public void unmarshal() throws Exception {
+    public void unmarshal(InputStream in) throws Exception {
 
     }
 

@@ -101,8 +101,9 @@ public class TestResource {
         //start building static workflow, but F0Component can still add components dynamically
         workflow.init("start");
         workflow.addComponent("start", new F0Component("f0"));
+        workflow.addComponent("f0",new WebSearchComponent("WebSearch"));
         Component j9 = new J9Component("j9");
-        workflow.addComponent("f0",j9);
+        workflow.addComponent("WebSearch",j9);
         //finish static workflow building
 
         //dispatch

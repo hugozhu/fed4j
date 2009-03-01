@@ -28,13 +28,6 @@ import java.net.URI;
 import java.net.URLDecoder;
 import java.util.Map;
 
-/**
- * Created by IntelliJ IDEA.
- * User: hzhu
- * Date: Nov 14, 2008
- * Time: 10:33:21 PM
- * To change this template use File | Settings | File Templates.
- */
 public abstract class HttpComponent extends Component {
     public String method = "GET";
     public String responseCharset = "UTF-8";
@@ -52,7 +45,6 @@ public abstract class HttpComponent extends Component {
     public long postRequestTimestamp = -1;
     public long preUnmarshalTimestamp = -1;
     public long postUnmarshalTimestamp = -1;
-
 
     public boolean enableProxy = false;
     public String proxyType = "http"; //default proxy type
