@@ -25,7 +25,15 @@ import java.net.URLEncoder;
 import java.net.URL;
 
 public abstract class HttpProvider extends Provider {
-    public String schema="http";
+    protected String schema="http";
+
+    public String getSchema() {
+        return schema;
+    }
+
+    public void setSchema(String schema) {
+        this.schema = schema;
+    }
 
     public abstract Map<String,String> getQueryMap();
 
@@ -35,7 +43,7 @@ public abstract class HttpProvider extends Provider {
         try {
             for (Map.Entry<String, String> entry : queries.entrySet()) {
                 query.append("&");
-                query.append(entry.getKey()+"="+ URLEncoder.encode(entry.getValue(),"UTF-8"));
+                query.append(entry.getKey()+"="+ URLEncoder.encode(entry.getValue(), inputEncoding));
             }
             if (query.length()>0) {
                 query.replace(0,1,"?");
@@ -43,7 +51,7 @@ public abstract class HttpProvider extends Provider {
             URL url = new URL(schema,host,port,path + query.toString());
             return url.toURI();
         } catch (Exception e) {
-            e.printStackTrace();
+            log.fatal("Failed to generate Uri for provider",e);
         }
         return null;
     }

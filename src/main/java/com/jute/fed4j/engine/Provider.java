@@ -17,30 +17,114 @@
 
 package com.jute.fed4j.engine;
 
+import org.apache.commons.logging.LogFactory;
+import org.apache.commons.logging.Log;
+
 import java.net.URI;
 import java.util.Map;
 
-/**
- * Created by IntelliJ IDEA.
- * User: hzhu
- * Date: Nov 14, 2008
- * Time: 3:09:02 PM
- * To change this template use File | Settings | File Templates.
- */
 public abstract class Provider {
-    public String host = "";
-    public int port = 80;
-    public String path = "/";
+    protected Log log = LogFactory.getLog(this.getClass());
 
-    public String query=null;
+    protected String host = "";
 
-    public String ip="127.0.0.1";
+    protected int port = 80;
+
+    protected String path = "/";
+
+    protected String query=null;
+
+    protected String ip="127.0.0.1";
     
-    public int timeout = 100;
+    protected int timeout = 100;
 
-    public int offset  = 0;
+    protected int offset  = 0;
 
-    public int hits    = 10;
+    protected int hits    = 10;
+
+    protected String inputEncoding = "UTF-8";
+
+    protected String outputEncoding = "UTF-8";
+
+    public String getHost() {
+        return host;
+    }
+
+    public void setHost(String host) {
+        this.host = host;
+    }
+
+    public int getPort() {
+        return port;
+    }
+
+    public void setPort(int port) {
+        this.port = port;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public String getQuery() {
+        return query;
+    }
+
+    public void setQuery(String query) {
+        this.query = query;
+    }
+
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
+
+    public int getTimeout() {
+        return timeout;
+    }
+
+    public void setTimeout(int timeout) {
+        this.timeout = timeout;
+    }
+
+    public int getOffset() {
+        return offset;
+    }
+
+    public void setOffset(int offset) {
+        this.offset = offset;
+    }
+
+    public int getHits() {
+        return hits;
+    }
+
+    public void setHits(int hits) {
+        this.hits = hits;
+    }
+
+    public String getInputEncoding() {
+        return inputEncoding;
+    }
+
+    public void setInputEncoding(String inputEncoding) {
+        this.inputEncoding = inputEncoding;
+    }
+
+    public String getOutputEncoding() {
+        return outputEncoding;
+    }
+
+    public void setOutputEncoding(String outputEncoding) {
+        this.outputEncoding = outputEncoding;
+    }
 
     public abstract URI getUri();
 
