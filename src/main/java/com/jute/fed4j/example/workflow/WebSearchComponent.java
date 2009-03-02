@@ -22,7 +22,7 @@ import com.jute.fed4j.engine.Provider;
 import com.jute.fed4j.engine.Workflow;
 import com.jute.fed4j.engine.Response;
 import com.jute.fed4j.engine.response.HttpResponse;
-import com.jute.fed4j.example.provider.yahoo.YahooWebSearchProvider;
+import com.jute.fed4j.example.provider.yahoo.WebSearchProvider;
 
 /**
  * Author: Hugo Zhu on  2009-3-1 21:26:21
@@ -35,7 +35,7 @@ public class WebSearchComponent extends HttpComponent {
         super(name);
         this.connectTimeout = 1000; 
         this.readTimeout = 5000;
-        provider = new YahooWebSearchProvider();
+        provider = new WebSearchProvider();
     }
 
     @Override
