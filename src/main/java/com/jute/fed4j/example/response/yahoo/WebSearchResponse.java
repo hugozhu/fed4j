@@ -18,10 +18,51 @@
 package com.jute.fed4j.example.response.yahoo;
 
 import com.jute.fed4j.engine.response.HttpResponse;
+import com.jute.fed4j.example.response.yahoo.websearch.ResultSet;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+
+import org.xml.sax.InputSource;
+
+import java.io.StringReader;
+import java.io.InputStream;
 
 /**
  * Author: Hugo Zhu on  2009-3-2 10:32:32
  */
 public class WebSearchResponse extends HttpResponse {
-    
+    public ResultSet result;
+    private static JAXBContext jaxbContext = null;
+
+    static {
+        try {
+            jaxbContext = JAXBContext.newInstance("com.jute.fed4j.example.response.yahoo.websearch");
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public WebSearchResponse (int code, String response) {
+        super(code, response);
+    }
+
+    public String toString() {
+        return "WebSearch Response:"+result;
+    }
+
+    public void unmarshal(InputStream in) {
+        if (jaxbContext == null) {
+            return;
+        }
+        try {
+            Unmarshaller unmarshaller=jaxbContext.createUnmarshaller();
+            unmarshaller.setSchema(null);
+            result = (ResultSet) unmarshaller.unmarshal(new InputSource(new StringReader(body)));
+            System.err.println("====="+result);
+        } catch (JAXBException e) {
+            log.error("Failed to unmarshal WebSearch Response",e);
+        }
+    }    
 }

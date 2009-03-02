@@ -20,16 +20,15 @@ package com.jute.fed4j.example.workflow;
 import com.jute.fed4j.engine.component.HttpComponent;
 import com.jute.fed4j.engine.Provider;
 import com.jute.fed4j.engine.Workflow;
-import com.jute.fed4j.engine.Response;
 import com.jute.fed4j.engine.response.HttpResponse;
 import com.jute.fed4j.example.provider.yahoo.WebSearchProvider;
+import com.jute.fed4j.example.response.yahoo.WebSearchResponse;
 
 /**
  * Author: Hugo Zhu on  2009-3-1 21:26:21
  */
 public class WebSearchComponent extends HttpComponent {
     private Provider provider = null;
-    private Response response = null;
     
     public WebSearchComponent(String name) {
         super(name);
@@ -47,6 +46,6 @@ public class WebSearchComponent extends HttpComponent {
 
     @Override
     public HttpResponse createResponse(int code, String body) {
-        return super.createResponse(code, body);
+        return new WebSearchResponse(code, body);
     }
 }

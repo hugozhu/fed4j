@@ -22,7 +22,11 @@ import com.jute.fed4j.engine.Response;
 import java.util.Map;
 import java.io.InputStream;
 
+import org.apache.commons.logging.LogFactory;
+import org.apache.commons.logging.Log;
+
 public class HttpResponse implements Response {
+    protected Log log = LogFactory.getLog(this.getClass());
     public int code;
     public String body;
     public Map<String,String> headers;    
