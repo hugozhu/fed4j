@@ -150,11 +150,11 @@
     </target>
 
     <target name="xjc" description="Generate AJXB stubs">
-        <!--<xjc schema="schema/qp.xsd" package="com.jutesearch.engine.response.qp"-->
-             <!--destdir="${module.fed4j.basedir}/src/main/java">-->
-            <!--<produces dir="${module.fed4j.basedir}/src/main/java/com/jute/fed4j/engine/response/qp"-->
-                      <!--includes="**/*.java"/>-->
-        <!--</xjc>-->
+        <xjc schema="schema/YahooWebSearch.xsd" package="com.jute.fed4j.example.response.yahoo.websearch"
+             destdir="${module.fed4j.basedir}/src/main/java">
+            <produces dir="${module.fed4j.basedir}/src/main/java/com/jute/fed4j/example/response/yahoo/websearch"
+                      includes="**/*.java"/>
+        </xjc>
     </target>
 
     <target name="war" depends="all" description="Package web application">
