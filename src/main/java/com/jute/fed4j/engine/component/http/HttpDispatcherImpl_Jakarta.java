@@ -50,13 +50,6 @@ import java.net.SocketTimeoutException;
 import java.net.URI;
 import java.io.IOException;
 
-/**
- * Created by IntelliJ IDEA.
- * User: hzhu
- * Date: Dec 12, 2008
- * Time: 5:56:56 PM
- * To change this template use File | Settings | File Templates.
- */
 public class HttpDispatcherImpl_Jakarta extends HttpDispatcher {
     private static ClientConnectionManager sharedConnectionManager = null;
     private static SchemeRegistry schemeRegistry = new SchemeRegistry();
@@ -109,13 +102,13 @@ public class HttpDispatcherImpl_Jakarta extends HttpDispatcher {
 
         try {
             this.init(component);
-            HttpClient httpclient = new YfedHttpClient(getConnectionManager(params,component.enablePersistentConnection), params);
+            HttpClient httpclient = new MyHttpClient(getConnectionManager(params,component.enablePersistentConnection), params);
             if (component.enableProxy && "http".equals(component.proxyType)) {
                 HttpHost proxy = new HttpHost(component.proxyHost, component.proxyPort, component.proxyType);
                 httpclient.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY, proxy);
             }
             HttpUriRequest request = new HttpRequest(component.method,component.uri);
-            YfedHttpResponseHandler responseHandler = new YfedHttpResponseHandler(component.responseCharset);
+            MyHttpResponseHandler responseHandler = new MyHttpResponseHandler(component.responseCharset);
             String body = httpclient.execute(request, responseHandler);
             this.onResponse(component,responseHandler.code,body);
         } catch (SocketTimeoutException e) {
@@ -130,14 +123,14 @@ public class HttpDispatcherImpl_Jakarta extends HttpDispatcher {
         }
     }
 
-    static class YfedClientConnManager extends ThreadSafeClientConnManager {
-        public YfedClientConnManager(HttpParams params, SchemeRegistry schreg) {
+    static class MyClientConnManager extends ThreadSafeClientConnManager {
+        public MyClientConnManager(HttpParams params, SchemeRegistry schreg) {
             super(params,schreg);
         }
     }
 
-    class YfedHttpClient extends DefaultHttpClient {
-        public YfedHttpClient(
+    class MyHttpClient extends DefaultHttpClient {
+        public MyHttpClient(
                 final ClientConnectionManager conman,
                 final HttpParams params) {
             super(conman, params);
@@ -145,7 +138,7 @@ public class HttpDispatcherImpl_Jakarta extends HttpDispatcher {
 
         @Override
         protected HttpRequestExecutor createRequestExecutor() {
-            return new YfedHttpRequestExecutor();
+            return new MyHttpRequestExecutor();
         }
 
         /**
@@ -159,7 +152,7 @@ public class HttpDispatcherImpl_Jakarta extends HttpDispatcher {
         }
     }
 
-    class YfedHttpRequestExecutor extends HttpRequestExecutor {
+    class MyHttpRequestExecutor extends HttpRequestExecutor {
         
         @Override
         public void preProcess(
@@ -178,12 +171,12 @@ public class HttpDispatcherImpl_Jakarta extends HttpDispatcher {
         }
     }
 
-    class YfedHttpResponseHandler implements ResponseHandler<String> {
+    class MyHttpResponseHandler implements ResponseHandler<String> {
         int code;
         Header[] headers;
         private String responseCharset = null;
 
-        YfedHttpResponseHandler(String responseCharset) {
+        MyHttpResponseHandler(String responseCharset) {
             this.responseCharset = responseCharset;
         }
 

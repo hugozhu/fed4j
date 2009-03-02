@@ -19,6 +19,7 @@ package com.jute.fed4j.example.response.yahoo;
 
 import com.jute.fed4j.engine.response.HttpResponse;
 import com.jute.fed4j.example.response.yahoo.websearch.ResultSet;
+import com.jute.fed4j.example.response.yahoo.websearch.ResultType;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -28,12 +29,13 @@ import org.xml.sax.InputSource;
 
 import java.io.StringReader;
 import java.io.InputStream;
+import java.util.*;
 
 /**
  * Author: Hugo Zhu on  2009-3-2 10:32:32
  */
 public class WebSearchResponse extends HttpResponse {
-    public ResultSet result;
+    private ResultSet result;
     private static JAXBContext jaxbContext = null;
 
     static {
@@ -48,6 +50,38 @@ public class WebSearchResponse extends HttpResponse {
         super(code, response);
     }
 
+    public List toList() {
+        LinkedList<Map> list = new LinkedList();
+        if (result!=null) {
+            List<ResultType> resList = result.getResult();
+            for (ResultType res:resList) {
+                String title = res.getTitle();
+                String url   = res.getUrl();
+                String summary = res.getSummary();
+                Map map = new HashMap(3);
+                map.put("title",title);
+                map.put("url",url);
+                map.put("summary",summary);
+                list.add(map);
+            }
+        }
+        return list;
+    }
+
+    public String toHtml() {
+        StringBuilder sb = new StringBuilder();
+        if (result!=null) {
+            List<ResultType> resList = result.getResult();
+            for (ResultType res:resList) {
+                String title = res.getTitle();
+                String url   = res.getUrl();
+                String summary = res.getSummary();
+                sb.append(String.format("<li><a href=\"%s\">%s</a><br/>%s</li>",url,title,summary));
+            }
+        }
+        return sb.toString();
+    }
+
     public String toString() {
         return "WebSearch Response:"+result;
     }
@@ -60,7 +94,6 @@ public class WebSearchResponse extends HttpResponse {
             Unmarshaller unmarshaller=jaxbContext.createUnmarshaller();
             unmarshaller.setSchema(null);
             result = (ResultSet) unmarshaller.unmarshal(new InputSource(new StringReader(body)));
-            System.err.println("====="+result);
         } catch (JAXBException e) {
             log.error("Failed to unmarshal WebSearch Response",e);
         }

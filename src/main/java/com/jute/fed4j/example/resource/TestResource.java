@@ -136,15 +136,15 @@ public class TestResource {
 
        
         result.append("<div id=\"as\">");
-//        result.append("\n" + gossip + "\n");
         result.append("</div>");
 
         result.append("<div id=\"res\">");
 
         result.append("<table><tr><td width=800 valign=top>");
 
+        result.append("\n"+webSearch.toString());
+
         result.append("</td><td width=\"200\" valign=\"top\">");
-//        result.append("\n" + ysm.toString("East") + "\n");
         result.append("</td></tr></table>");
 
         //debug
