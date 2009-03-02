@@ -30,6 +30,7 @@ import org.xml.sax.InputSource;
 import java.io.StringReader;
 import java.io.InputStream;
 import java.util.*;
+import java.math.BigInteger;
 
 /**
  * Author: Hugo Zhu on  2009-3-2 10:32:32
@@ -50,35 +51,28 @@ public class WebSearchResponse extends HttpResponse {
         super(code, response);
     }
 
-    public List toList() {
-        LinkedList<Map> list = new LinkedList();
-        if (result!=null) {
-            List<ResultType> resList = result.getResult();
-            for (ResultType res:resList) {
-                String title = res.getTitle();
-                String url   = res.getUrl();
-                String summary = res.getSummary();
-                Map map = new HashMap(3);
-                map.put("title",title);
-                map.put("url",url);
-                map.put("summary",summary);
-                list.add(map);
-            }
-        }
-        return list;
-    }
-
+    /**
+     * a simple way to render presentation, in actual production, we should return entity list instead
+     * @return String
+     */
     public String toHtml() {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder("<h2>Web Search Results:</h2>");
         if (result!=null) {
+            int end = result.getFirstResultPosition().add(result.getTotalResultsReturned()).intValue()-1;
+            sb.append(String.format("Display %s - %s of %s results",result.getFirstResultPosition(),end,result.getTotalResultsAvailable()));
             List<ResultType> resList = result.getResult();
             for (ResultType res:resList) {
                 String title = res.getTitle();
                 String url   = res.getUrl();
                 String summary = res.getSummary();
-                sb.append(String.format("<li><a href=\"%s\">%s</a><br/>%s</li>",url,title,summary));
+                String displayUrl = res.getDisplayUrl();
+                sb.append(String.format("<li><a href=\"%s\">%s</a><div>%s</div><em>%s</em></li>",url,title,summary,displayUrl));
             }
         }
+        else {
+            sb.append("No Results");
+        }
+        sb.append("</ul>");
         return sb.toString();
     }
 

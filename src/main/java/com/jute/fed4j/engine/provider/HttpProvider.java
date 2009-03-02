@@ -26,6 +26,7 @@ import java.net.URL;
 
 public abstract class HttpProvider extends Provider {
     protected String schema="http";
+    protected String hash = null;
 
     public String getSchema() {
         return schema;
@@ -42,11 +43,17 @@ public abstract class HttpProvider extends Provider {
         StringBuffer query = new StringBuffer();
         try {
             for (Map.Entry<String, String> entry : queries.entrySet()) {
+                if (entry.getValue()==null) {
+                    continue;
+                }
                 query.append("&");
                 query.append(entry.getKey()+"="+ URLEncoder.encode(entry.getValue(), inputEncoding));
             }
             if (query.length()>0) {
                 query.replace(0,1,"?");
+            }
+            if (hash!=null) {
+                query.append("#"+hash);
             }
             URL url = new URL(schema,host,port,path + query.toString());
             return url.toURI();

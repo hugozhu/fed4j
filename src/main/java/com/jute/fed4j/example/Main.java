@@ -65,7 +65,7 @@ public class Main {
         SelectorThread threadSelector = startServer();
         System.out.println(String.format("Jersey app started with WADL available at "
                 + "%sapplication.wadl\nYou can try: %s \nHit enter 'q' to stop it...",
-                BASE_URI, "http://localhost:9998/test?p=1%2B1"));
+                BASE_URI, "http://localhost:9998/test?p=Java"));
         char c = (char) System.in.read();
         while(c!='q') {
             c = (char) System.in.read();

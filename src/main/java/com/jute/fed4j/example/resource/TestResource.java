@@ -103,10 +103,16 @@ public class TestResource {
         workflow.addComponent("start", new F0Component("f0"));
 
         WebSearchComponent webSearch = new WebSearchComponent("WebSearch");
-        workflow.addComponent("f0",webSearch);
+        TranslationComponent translation = new TranslationComponent("Translation");
+        WebSearchComponent webSearch2 = new TranslatedWebSearchComponent("TranslatedWebSearch");
 
-        Component j9 = new J9Component("j9");
-        workflow.addComponent("WebSearch",j9);
+        workflow.addComponent("f0",webSearch);
+        workflow.addComponent("f0",translation);
+        workflow.addComponent("Translation",webSearch2);
+
+//        Component j9 = new J9Component("j9");
+//        workflow.addComponent("WebSearch",j9);
+//        workflow.addComponent("TranslatedWebSearch",j9);
         //finish static workflow building
 
         //dispatch
@@ -134,17 +140,19 @@ public class TestResource {
         buildHead(result);
         buildSearchBox(result,workflow);
 
-       
+        result.append("<hr/>");
         result.append("<div id=\"as\">");
         result.append("</div>");
 
         result.append("<div id=\"res\">");
 
-        result.append("<table><tr><td width=800 valign=top>");
+        result.append("<table><tr><td width=\"50%\" valign=\"top\">");
 
         result.append("\n"+webSearch.toString());
 
-        result.append("</td><td width=\"200\" valign=\"top\">");
+        result.append("</td><td width=\"50%\" valign=\"top\">");
+        result.append("<div>"+translation.toString()+"</div>");        
+        result.append("\n"+webSearch2.toString());        
         result.append("</td></tr></table>");
 
         //debug

@@ -74,6 +74,6 @@ public abstract class HttpDispatcher {
     public void onException(HttpComponent component, int code, String message) {
         component.error = true;
         component.setResponse(component.createResponse(code,message));
-        component.logger.warning("["+component.name+"] "+message);
+        component.logger.warning("["+component.name+"] "+message+" "+component.uri);
     }
 }

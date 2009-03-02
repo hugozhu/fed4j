@@ -29,7 +29,7 @@ import com.jute.fed4j.example.response.yahoo.WebSearchResponse;
  * Author: Hugo Zhu on  2009-3-1 21:26:21
  */
 public class WebSearchComponent extends HttpComponent {
-    private Provider provider = null;
+    protected Provider provider = null;
     
     public WebSearchComponent(String name) {
         super(name);
@@ -51,7 +51,7 @@ public class WebSearchComponent extends HttpComponent {
             return ((WebSearchResponse)response).toHtml();
         }
         else {
-            sb.append("Error:"+response);
+            sb.append("");
         }
         return sb.toString(); 
     }
