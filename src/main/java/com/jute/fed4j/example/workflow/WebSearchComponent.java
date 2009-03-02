@@ -20,6 +20,7 @@ package com.jute.fed4j.example.workflow;
 import com.jute.fed4j.engine.component.HttpComponent;
 import com.jute.fed4j.engine.Provider;
 import com.jute.fed4j.engine.Workflow;
+import com.jute.fed4j.engine.Response;
 import com.jute.fed4j.engine.response.HttpResponse;
 import com.jute.fed4j.example.provider.yahoo.YahooWebSearchProvider;
 
@@ -28,6 +29,7 @@ import com.jute.fed4j.example.provider.yahoo.YahooWebSearchProvider;
  */
 public class WebSearchComponent extends HttpComponent {
     private Provider provider = null;
+    private Response response = null;
     
     public WebSearchComponent(String name) {
         super(name);
