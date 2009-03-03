@@ -186,7 +186,7 @@ public class WorkflowEngine implements Executor {
 
     public String getDot(String name) {
         if (name == null) {
-            name = "yfed_j workflow";
+            name = "fed4j workflow";
         }
         StringBuilder sb = new StringBuilder("digraph \""+name+"\" {\n");        
         HashMap map = new HashMap();
@@ -341,7 +341,7 @@ public class WorkflowEngine implements Executor {
         }
 
         g.setColor(Color.BLACK);
-        String label = "YFED - Query: "+workflow.getStringParameter("query")+" Duration: "+workflow.getDuration()+"ms";
+        String label = "fed4j - Query: "+workflow.getStringParameter("query")+" Duration: "+workflow.getDuration()+"ms";
         g.drawString(label, Math.max(0,width/2 - label.length() * 3), 25);
 
         ByteArrayOutputStream output = new ByteArrayOutputStream();
