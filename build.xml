@@ -55,10 +55,6 @@
         <classpath refid="library.build.classpath"/>
     </taskdef>
 
-    <taskdef resource="aQute/bnd/ant/taskdef.properties">
-        <classpath refid="library.build.classpath"/>
-    </taskdef>
-
     <!-- Modules -->
 
     <!-- Module engine -->
