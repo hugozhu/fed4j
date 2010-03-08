@@ -23,6 +23,8 @@ import com.jute.fed4j.engine.Workflow;
 import com.jute.fed4j.engine.Response;
 import com.jute.fed4j.engine.component.http.HttpDispatcher;
 import com.jute.fed4j.engine.response.HttpResponse;
+import com.jute.fed4j.engine.response.ErrorResponse;
+
 
 import java.net.URI;
 import java.net.URLDecoder;
@@ -50,9 +52,9 @@ public abstract class HttpComponent extends Component {
     public String proxyType = "http"; //default proxy type
     public String proxyHost = null;
     public int proxyPort = 1080;       //default proxy port
-   
+
     public boolean enablePersistentConnection = false;
-    
+
 
     public HttpComponent(String name) {
         super(name, ComponentType.DATA);
@@ -113,6 +115,10 @@ public abstract class HttpComponent extends Component {
         StringBuffer sb = new StringBuffer("\n\n<b>Component: "+name+"</b>\n");
         if (response==null) {
            sb.append("<empty response>");
+           return sb.toString().replace("\n","<br/>");
+        }
+        if (response instanceof ErrorResponse) {
+           sb.append("<error response> "+response.getCode());
            return sb.toString().replace("\n","<br/>");
         }
         sb.append("<b>Response:</b>\n");
